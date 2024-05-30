@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-export const UserContext = createContext(undefined);
+export const UserContext = createContext();
 
 function useUserContext() {
   const context = useContext(UserContext);

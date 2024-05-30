@@ -1,10 +1,6 @@
 /* eslint-disable react/prop-types */
-
-
 import { useNavigate } from "react-router-dom";
 import useUserContxt from "../context/userContext";
-
-
 
 const Card = () => {
     const navigate = useNavigate()
@@ -12,10 +8,12 @@ const Card = () => {
         navigate(`/user/${id}`)
     }
 
-    const users = useUserContxt()
+    const { users, loader } = useUserContxt()
     return (
         <>
-            <div className='flex justify-center align-middle items-center flex-wrap gap-10 h-screen p-5 bg-slate-800'>
+
+            <div className=' relative flex justify-center align-middle items-center flex-wrap gap-10 h-screen p-5 bg-slate-800'>
+                <div className=" font-semibold text-center absolute text-white">{loader ? "loading..." : ""}</div>
                 {users.map((data) => {
                     return (
                         <div className='rounded w-72 cursor-pointer text-center h-64 bg-white  ' key={data.id} onClick={() => handllUser(data.id)}>
@@ -30,10 +28,8 @@ const Card = () => {
                                 <div className='text'>{data.address.street}</div>
                                 <div className='text'>{data.address.suite}</div>
                                 <div className='text'>{data.address.zipcode}</div>
-
                             </div>
                         </div>
-
                     )
                 })}
             </div>
